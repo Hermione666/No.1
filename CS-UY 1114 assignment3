@@ -1,0 +1,147 @@
+# Author: <Yuezhu Zhao>
+# Assignment #3 - Blackjack
+# Date due: 2021-03-25
+# I pledge that I have completed this assignment without
+# collaborating with anyone else, in conformance with the
+# NYU School of Engineering Policies and Procedures on
+# Academic Misconduct.
+
+import random
+
+FACE_CARD_VALUE = 10
+ACE_VALUE = 1
+CARD_LABELS = ('A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K')
+BLACKJACK = 21
+DEALER_THRESHOLD = 16
+
+
+####### DO NOT EDIT ABOVE ########
+
+def deal_card():
+INSTRUCTOR
+| 04/04 AT 5:44 PM
+missing docstrings
+
+    return random.choice(CARD_LABELS)
+
+def get_card_value(CARD_LABEL):
+INSTRUCTOR
+| 04/04 AT 5:44 PM
+parameters should be in all lowercase
+
+    if CARD_LABEL=='A':
+INSTRUCTOR
+| 04/04 AT 5:43 PM
+space this out: if CARD_LABEL == 'A':
+
+        CARD_LABEL='1'
+        CARD_LABEL_int=int(CARD_LABEL)
+        return CARD_LABEL_int
+    elif CARD_LABEL=='2' or CARD_LABEL=='3' or CARD_LABEL=='4'or CARD_LABEL=='5'or CARD_LABEL=='6'or CARD_LABEL=='7'or CARD_LABEL=='8'or CARD_LABEL=='9'or CARD_LABEL=='10':
+        CARD_LABEL=int(CARD_LABEL)
+        return CARD_LABEL
+    elif CARD_LABEL=='K' or CARD_LABEL=='Q' or CARD_LABEL=='J':
+        CARD_LABEL='10'
+        CARD_LABEL_int=int(CARD_LABEL)
+        return CARD_LABEL_int
+
+def deal_cards_to_player():
+    card1=deal_card()
+    card2=deal_card()
+    card1_value=get_card_value(card1)
+    card2_value=get_card_value(card2)
+    player_total=card1_value+card2_value
+    print("Player drew {} and {}.".format(card1,card2)+"\n"+"Player's total is {}.".format(player_total)+"\n")
+    while player_total<BLACKJACK:
+        enter=input("Hit (h) or Stay (s)?")
+        print()
+        if enter=="h":
+            new_card=deal_card()
+            new_card_value=int(get_card_value(new_card))
+            player_total+=new_card_value
+            # new_card_str=str(new_card)
+            # player_total_str=str(player_total)
+            # string1 = "Player's total is" + player_total_str + ".\n"
+            # print(string1.lstrip())
+            # # print("Player drew"+new_card_str+".")
+            # # print("Player's total is"+player_total_str+".\n")
+            print("Player drew {}.".format(new_card))
+            print("Player's total is {}.".format(player_total),"\n")
+            if player_total>=BLACKJACK:
+                break
+        elif enter=="s":
+            break
+
+        else:
+            continue
+    return player_total
+
+
+def deal_cards_to_dealer():
+    card1=deal_card()
+    card2=deal_card()
+    card1_value=get_card_value(card1)
+    card2_value=get_card_value(card2)
+    dealer_total=card1_value+card2_value
+    print("The dealer has {} and {}.".format(card1,card2)+"\n"+"Dealer's total is {}.".format(dealer_total)+"\n")
+    while dealer_total<=DEALER_THRESHOLD:
+        new_card=deal_card()
+        new_card_value=int(get_card_value(new_card))
+        dealer_total+=new_card_value
+        print("Dealer drew {}.".format(new_card)+"\n"+"Dealer's total is {}.".format(dealer_total)+"\n")
+    return dealer_total
+
+def determine_outcome(player_total,dealer_total):
+
+    if player_total>21:
+        print("YOU LOSE!"+"\n")
+    elif dealer_total>21:
+        print("YOU WIN!"+"\n")
+    else:
+        if player_total>dealer_total:
+            print("YOU WIN!"+"\n")
+        else:
+            print("YOU LOSE!"+"\n")
+
+def play_blackjack():
+    print("Let's Play Blackjack!")
+    print()
+    while True:
+          player_total=deal_cards_to_player()
+          if player_total>21:
+              determine_outcome(player_total,dealer_total=0)
+          else:
+              dealer_total=deal_cards_to_dealer()
+              determine_outcome(player_total,dealer_total)
+          enter=input("Play again (Y/N)?"+"\n")
+          while enter!="Y" and enter!="N":
+             enter=input("Play again (Y/N)?"+"\n")
+          if enter=="N":
+             break
+    print("Goodbye.")
+
+
+
+
+
+def main():
+    """Runs a program for playing Blackjack with one player
+    and a dealer
+    """
+
+    # call play_blackjack() here and remove pass below
+    play_blackjack()
+
+
+
+####### DO NOT REMOVE IF STATEMENT BELOW ########
+
+if __name__ == "__main__":
+    #Remove comments for next 4 lines to run doctests
+    #print("Running doctests...")
+    #import doctest
+    #doctest.testmod(verbose=True)
+
+    #print("\nRunning program...\n")
+
+    main()
