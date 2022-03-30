@@ -1,0 +1,14 @@
+
+#Author:Yuezhu Zhao
+#shift list
+def shift(lst, k, direction="left"):
+    if direction=="right":
+        for i in range(0,k):
+            pop=lst.pop()
+            lst.insert(0,pop)
+    else:
+        for i in range(0,k):
+            pop=lst.pop(0)
+            print(pop)
+            lst.append(pop)
+    return lst
