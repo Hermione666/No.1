@@ -1,0 +1,7 @@
+def two_sum(srt_list,target):
+    dic={}
+    for i in range(len(srt_list)):
+        if target-srt_list[i] in dic:
+            return (dic[target-srt_list[i]],i)
+        dic[srt_list[i]]=i
+    return
