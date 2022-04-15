@@ -1,0 +1,9 @@
+
+def factors(num):
+    for i in range(1, int(num**(0.5))+1):
+        if num % i == 0:
+            if num % i == 0:
+                yield i
+    for j in range(int(num**(0.5))+1,0,-1):
+        if num % j==0 and j*j!=num:
+            yield num//j
